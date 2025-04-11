@@ -3,7 +3,11 @@ spring:
     name: edge-service
   lifecycle:
     timeout-per-shutdown-phase: 15s
+  config:
+    import: "optional:configserver:"
   cloud:
+    config:
+      uri: http://localhost:8888
     gateway:
       routes:
         - id: catalog-route
@@ -48,7 +52,8 @@ spring:
               redis-rate-limiter.replenish-rate: 10
               redis-rate-limiter.burstCapacity: 20
               redis-rate-limiter.requestedTokens: 1
-
+  profiles:
+    active: prod
   session:
     timeout: 10m
     redis:
