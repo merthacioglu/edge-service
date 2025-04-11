@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: edge-service
-          image: mhacioglu/edge-service:0.0.3-SNAPSHOT
+          image: mhacioglu/edge-service:0.0.4-SNAPSHOT
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:

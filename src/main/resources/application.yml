@@ -88,3 +88,9 @@ resilience4j:
     configs:
       default:
         timeout-duration: 5s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
