@@ -12,7 +12,7 @@ public class GreetingsController {
         this.properties = properties;
     }
 
-    @GetMapping("/")
+    @GetMapping("greetings")
     public String getGreeting() {
         return properties.getGreeting();
     }
