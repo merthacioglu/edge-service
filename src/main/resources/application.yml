@@ -43,6 +43,24 @@ spring:
               maxBackOff: 500ms
               factor: 2
               basedOnPreviousValue: false
+        - name : RequestRateLimiter
+          args:
+              redis-rate-limiter.replenish-rate: 10
+              redis-rate-limiter.burstCapacity: 20
+              redis-rate-limiter.requestedTokens: 1
+
+  session:
+    timeout: 10m
+    redis:
+      namespace: polar-edge
+
+
+  data:
+    redis:
+      connect-timeout: 2s
+      host: localhost
+      port: 6379
+      timeout: 500ms
 
 server:
   port: 9000
