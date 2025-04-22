@@ -53,6 +53,9 @@ spring:
             redis-rate-limiter.requestedTokens: 1
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URL}/realms/PolarBookshop
       client:
         registration:
           keycloak:
@@ -62,8 +65,9 @@ spring:
         provider:
           keycloak:
             user-name-attribute: preferred_username
-            issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/realms/PolarBookshop
-            authorization-uri: ${KEYCLOAK_EXTERNAL_URL:http://localhost:8080}/realms/PolarBookshop/protocol/openid-connect/auth
+            issuer-uri: ${KEYCLOAK_URL}/realms/PolarBookshop
+            authorization-uri: ${KEYCLOAK_EXTERNAL_URL}/realms/PolarBookshop/protocol/openid-connect/auth
+
   profiles:
     active: prod
   session:
@@ -87,7 +91,12 @@ logging:
   level:
     org:
       springframework:
-        security: DEBUG
+        security:
+          oauth2: TRACE
+        web:
+          reactive:
+            function:
+              client: TRACE
 
 resilience4j:
   circuitbreaker:
