@@ -62,6 +62,7 @@ spring:
         provider:
           keycloak:
             issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/realms/PolarBookshop
+            authorization-uri: ${KEYCLOAK_EXTERNAL_URL:http://localhost:8080}/realms/PolarBookshop/protocol/openid-connect/auth
   profiles:
     active: prod
   session:
