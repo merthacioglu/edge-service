@@ -61,6 +61,7 @@ spring:
             scope: openid
         provider:
           keycloak:
+            user-name-attribute: preferred_username
             issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/realms/PolarBookshop
             authorization-uri: ${KEYCLOAK_EXTERNAL_URL:http://localhost:8080}/realms/PolarBookshop/protocol/openid-connect/auth
   profiles:
@@ -84,7 +85,9 @@ server:
 
 logging:
   level:
-    io.github.resilience4j: DEBUG
+    org:
+      springframework:
+        security: DEBUG
 
 resilience4j:
   circuitbreaker:
