@@ -27,7 +27,6 @@ spring:
             - name: CircuitBreaker
               args:
                 name: orderCircuitBreaker
-
       httpclient:
         connect-timeout: 5000
         response-timeout: 5s
@@ -47,19 +46,28 @@ spring:
               maxBackOff: 500ms
               factor: 2
               basedOnPreviousValue: false
-        - name : RequestRateLimiter
+        - name: RequestRateLimiter
           args:
-              redis-rate-limiter.replenish-rate: 10
-              redis-rate-limiter.burstCapacity: 20
-              redis-rate-limiter.requestedTokens: 1
+            redis-rate-limiter.replenish-rate: 10
+            redis-rate-limiter.burstCapacity: 20
+            redis-rate-limiter.requestedTokens: 1
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: edge-service
+            client-secret: peaktrack-secret
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/realms/peaktrack
   profiles:
     active: prod
   session:
     timeout: 10m
     redis:
       namespace: polar-edge
-
-
   data:
     redis:
       connect-timeout: 2s
@@ -72,6 +80,7 @@ server:
   netty:
     connection-timeout: 2s
   shutdown: graceful
+
 logging:
   level:
     io.github.resilience4j: DEBUG
