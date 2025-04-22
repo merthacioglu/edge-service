@@ -57,11 +57,11 @@ spring:
         registration:
           keycloak:
             client-id: edge-service
-            client-secret: peaktrack-secret
+            client-secret: polar-keycloak-secret
             scope: openid
         provider:
           keycloak:
-            issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/realms/peaktrack
+            issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/realms/PolarBookshop
   profiles:
     active: prod
   session:
